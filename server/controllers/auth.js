@@ -11,7 +11,7 @@ export const signup = async (req, res, next) => {
     password,
     picturePath,
     location,
-    ocupation,
+    occupation,
   } = req.body;
   let existUser;
   try {

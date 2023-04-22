@@ -7,6 +7,7 @@ const router = express.Router();
 
 
 router.post('/signup',fileUpload.single('image'), signup);
+
 router.post('/login', login);
 
 

@@ -9,8 +9,9 @@ import cors from "cors";
 import multer from "multer";
 import morgan from "morgan";
 
-import authRoutes from "./routes/auth-routes.js"
+import authRoutes from "./routes/auth-routes.js";
 import userRoutes from './routes/user-routes.js';
+import postRoutes from "./routes/post-routes.js";
 
 /* configuration */
 const __filename = fileURLToPath(import.meta.url);
@@ -32,6 +33,7 @@ const PORT = process.env.PORT || 6001;
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/post', postRoutes)
 
 
 
