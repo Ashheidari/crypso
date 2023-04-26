@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import cors from "cors";
-import multer from "multer";
 import morgan from "morgan";
 
 import authRoutes from "./routes/auth-routes.js";
