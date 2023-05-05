@@ -19,14 +19,14 @@ const UserSchema = new mongoose.Schema({
         max:50,
         unique: true
     },
-    friends:{
-        type: Array,
-        default: []
-    },
     password:{
         type: String,
         require: true,
         min: 5,
+    },
+    friends:{
+        type: Array,
+        default: []
     },
     picturePath:{
         type: String,
@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     location: String,
     occupation: String,
     viewedProfile: Number,
-    impression: Number
+    impressions: Number
 },{timestamps:true});
 
 

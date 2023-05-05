@@ -86,7 +86,7 @@ const login = async(values,onSubmitProps)=>{
   onSubmitProps.resetForm();
   if (loggedIn){
     dispatch(setLogin({
-        user : loggedIn.user,
+        user : loggedIn.existUser,
         token : loggedIn.token
     }));
     navigate('/home');

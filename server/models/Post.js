@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema({
   picturePath: { type: String, require: true },
   comments:{type:Array,default:[]},
   likes:{type: Map, of:Boolean},
-  user:{type:mongoose.Types.ObjectId, require:true, ref:'User'},
+  user:{type:mongoose.Schema.Types.ObjectId, require:true, ref:'User'},
 });
 
 const Post = mongoose.model('Post',postSchema);

@@ -5,7 +5,7 @@ import User from "../models/User.js";
 
 export const getUser = async (req, res, next) =>{
     try{
-        const userId = req.params;
+        const userId = req.params.id;
         const user = await User.findById(userId);
         res.status(200).json(user);
     }catch(err){
@@ -16,7 +16,7 @@ export const getUser = async (req, res, next) =>{
 
 export const getUserFriends = async (req, res, next)=>{
     try{
-        const userId = req.params;
+        const userId = req.params.id;
         const user = await User.findById(userId);
 
         const firends = await Promise.all(user.firends.map((friendId)=>{

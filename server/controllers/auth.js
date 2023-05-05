@@ -30,7 +30,7 @@ export const signup = async (req, res, next) => {
   let hashedPass;
   try {
     const salt = await bcrypt.genSalt();
-    const hashedPass = await bcrypt.hash(password);
+    hashedPass = await bcrypt.hash(password, salt);
   } catch (err) {
     const error = new HttpError("Could not create user please try again", 500);
     return next(error);
@@ -44,7 +44,7 @@ export const signup = async (req, res, next) => {
     location,
     occupation,
     viewedProfile: Math.floor(Math.random() * 1000),
-    impression: Math.floor(Math.random() * 1000),
+    impressions: Math.floor(Math.random() * 1000),
   });
   try {
     await createdUser.save();
@@ -71,7 +71,7 @@ export const login = async (req, res, next) => {
   const {email,password} = req.body;
   let existUser;
   try{
-    const existUser = await User.findOne({email:email});
+     existUser = await User.findOne({email:email});
   }catch(err){
     const error = new HttpError('login failed, please try again later.',500);
     return next(error);
@@ -97,7 +97,7 @@ export const login = async (req, res, next) => {
   let token;
   try {
     token = jwt.sign(
-      { userId: createdUser.id, email: createdUser.email },
+      { userId: existUser.id, email: existUser.email },
       process.env.JWTSECRET,
       { expiresIn: "2h" }
     );
@@ -105,7 +105,10 @@ export const login = async (req, res, next) => {
     const error = new HttpError('Signing up failed, please try again later.',500);
     return next(error);
   }
-  delete existUser.password
+ 
+  existUser.password = undefined
+ 
+  
   res.status(200).json({token,existUser})
   
 };

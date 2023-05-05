@@ -6,7 +6,7 @@ import {isAuth} from '../middleware/auth-check.js';
 const router = express.Router();
 
 /* CREATE */
-router.post('/create',isAuth ,fileUpload.single('image'),createPost);
+router.post('/create',isAuth ,fileUpload.single('picture'),createPost);
 
 /* READ */
 router.get('/',isAuth ,getFeedPosts);
