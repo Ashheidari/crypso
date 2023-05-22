@@ -49,7 +49,7 @@ import {
 
         const response = await fetch("http://localhost:3001/post/create", {
             method: "POST",
-            headers: { "Authorization" : `Bearer ${token}`},
+            headers: {"Authorization":`bearer ${token}`},
             body: formData,
         });
         const posts = await response.json();

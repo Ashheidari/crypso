@@ -10,7 +10,7 @@ import {
   import WidgetWrapper from "components/WidgetWrapper";
   import { useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
-  import { setPost } from "state";
+  import { setPost } from "state/authSlice";
 
 
   const PostWidget = ({
@@ -37,7 +37,7 @@ import {
     const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Authorization":`bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ userId: loggedInUserId }),
@@ -52,7 +52,7 @@ import {
         friendId={user._id}
         name={user.firstName +" "+ user.lastName}
         subtitle={user.location}
-        userPicturePath={user.userPicturePath}
+        userPicturePath={user.picturePath}
       />
       <Typography color={main} sx={{ mt: "1rem" }}>
         {description}
@@ -94,7 +94,7 @@ import {
       {isComments && (
         <Box mt="0.5rem">
           {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
+            <Box key={`${user.name}-${i}`}>
               <Divider />
               <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
                 {comment}

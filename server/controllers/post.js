@@ -48,10 +48,12 @@ export const getUserPost = async (req, res, next)=>{
 
 /* UPDATE */
 export const likePost = async (req, res, next)=>{
-    const postId = req.params;
-    const userId = req.body
+    const postId = req.params.postId;
+    const userId = req.body.userId
     try{
-        const post = await Post.findOne({postId}).populate('user');
+        console.log('before');
+        
+        const post = await Post.findById(postId);
         const isLikedbyUser = post.likes.get(userId);
         if(isLikedbyUser){
             post.likes.delete(userId);
@@ -59,7 +61,7 @@ export const likePost = async (req, res, next)=>{
         }else{
             post.likes.set(userId, true);
         }
-        const updatedPost = Post.findByIdAndUpdate({postId}, {likes:post.likes},{new:true});
+        const updatedPost = await Post.findByIdAndUpdate( postId, {likes: post.likes},{new:true});
         res.status(200).json(updatedPost);
     }catch(err){
         const error = new HttpError('updating post failed');

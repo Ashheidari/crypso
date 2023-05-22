@@ -37,7 +37,7 @@ const PORT = process.env.PORT || 6001;
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.use('/post', postRoutes)
+app.use('/posts', postRoutes)
 
 
 
